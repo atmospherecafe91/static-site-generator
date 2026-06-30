@@ -1,0 +1,1 @@
+PYTHONPATH='/mnt/c/Users/JAVASCRIPT/Documents/bootdev/static-site-generator/src' python3 -m unittest discover -s src.tests

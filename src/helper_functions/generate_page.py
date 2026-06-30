@@ -11,7 +11,7 @@ def extract_title(markdown: str):
 
     return title
 
-def generate_page(from_path, template_path, dest_path):
+def generate_page(from_path, template_path, dest_path, basepath):
     print(f'Generating page {from_path} to {dest_path} using {template_path}')
 
     if not os.path.isfile(from_path):
@@ -35,6 +35,8 @@ def generate_page(from_path, template_path, dest_path):
 
     template_content = template_content.replace("{{ Content }}", html_text)
     template_content = template_content.replace('{{ Title }}', title)
+    template_content = template_content.replace('href="/', f'href="{basepath}')
+    template_content = template_content.replace('src="/', f'src="{basepath}')
 
     dirname = os.path.dirname(dest_path)
 

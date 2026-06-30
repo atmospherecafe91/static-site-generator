@@ -5,4 +5,4 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-cd public && python3 -m http.server 8888
+cd docs && python3 -m http.server 8888

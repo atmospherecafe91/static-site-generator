@@ -1,4 +1,5 @@
 import os
+import sys
 from pathlib import Path
 
 from textnode import TextNode, TextType
@@ -9,7 +10,7 @@ from utils import get_project_root
 
 ROOT_DIR = get_project_root()
 
-def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
+def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, basepath):
 
     directory_path_full = os.path.join(ROOT_DIR, dir_path_content)
     
@@ -33,15 +34,21 @@ def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
 
         if os.path.isfile(file_path):
 
-            generate_page(file_path, f"{ROOT_DIR}/template.html", f"{dest_file}")
+            generate_page(file_path, f"{ROOT_DIR}/template.html", f"{dest_file}", basepath)
         
         else:
-            generate_pages_recursive(os.path.join(dir_path_content, file), template_path, dest_dir_path)
+            generate_pages_recursive(os.path.join(dir_path_content, file), template_path, dest_dir_path, basepath)
 
 
 def main():
+
+    basepath = '/'
+
+    if len(sys.argv) > 1:
+        basepath = sys.argv[1]
+
     copy_static_files()
-    generate_pages_recursive("content", "template.html", "public")
+    generate_pages_recursive("content", "template.html", "docs", basepath)
         
         
 

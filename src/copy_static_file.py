@@ -7,7 +7,7 @@ ROOT_DIR = get_project_root()
 
 def copy_static_files():
 
-    dest_path  = os.path.join(ROOT_DIR, 'public')
+    dest_path  = os.path.join(ROOT_DIR, 'docs')
     copy_path = os.path.join(ROOT_DIR, 'static')
     
     
